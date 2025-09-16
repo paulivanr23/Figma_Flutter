@@ -13,9 +13,41 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: BotonPersonalizado(
-            texto: 'Click Me',
-            onPressed: null, // Aquí puedes definir la función que se ejecutará al presionar el botón
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  BotonPersonalizado(
+                    texto: "Login",
+                    colorFondo: Color(0xFF3333FF),
+                    colorTexto: Color(0xFFFFFFFF),
+                    onPressed: null,
+                  ),
+                  SizedBox(width: 16),
+                  BotonPersonalizado(
+                    texto: "Sign Up",
+                    colorFondo: Color(0xFFFFFFFF),
+                    colorTexto: Color(0xFF3333FF),
+                    onPressed: null,
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 40),
+
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  BotonCirculo(),
+                  SizedBox(width: 16),
+                  BotonCirculo(),
+                  SizedBox(width: 16),
+                  BotonCirculo(),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -23,14 +55,18 @@ class MainApp extends StatelessWidget {
   }
 }
 
-class BotonPersonalizado extends StatelessWidget{
+class BotonPersonalizado extends StatelessWidget {
   final String texto;
   final VoidCallback? onPressed;
+  final Color colorFondo;
+  final Color colorTexto;
 
   const BotonPersonalizado({
     super.key,
     required this.texto,
     this.onPressed,
+    this.colorFondo = const Color(0xFF3333FF),
+    this.colorTexto = const Color(0xFFFFFFFF),
   });
 
   @override
@@ -40,24 +76,44 @@ class BotonPersonalizado extends StatelessWidget{
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
-          color: const Color(0xFF3333FF),
+          color: colorFondo,
           borderRadius: BorderRadius.circular(8),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: const Color(0xFF000000).withOpacity(0.2),
-              offset: const Offset(0, 4),
+              color: Color(0xFF000000),
+              offset: Offset(0, 4),
               blurRadius: 6,
             ),
           ],
+          border: Border.all(
+            color: const Color(0xFF3333FF),
+            width: 2,
+          ),
         ),
         child: Text(
           texto,
-          style: const TextStyle(
-            color: Color(0xFFFFFFFF),
+          style: TextStyle(
+            color: colorTexto,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
+      ),
+    );
+  }
+}
+
+class BotonCirculo extends StatelessWidget {
+  const BotonCirculo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 30,
+      height: 30,
+      decoration: const BoxDecoration(
+        color: Colors.grey,
+        shape: BoxShape.circle,
       ),
     );
   }
