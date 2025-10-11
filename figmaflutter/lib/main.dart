@@ -1,5 +1,6 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'login.dart';
+import 'signup.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,45 +11,63 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  BotonPersonalizado(
-                    texto: "Login",
-                    colorFondo: Color(0xFF3333FF),
-                    colorTexto: Color(0xFFFFFFFF),
-                    onPressed: null,
-                  ),
-                  SizedBox(width: 16),
-                  BotonPersonalizado(
-                    texto: "Sign Up",
-                    colorFondo: Color(0xFFFFFFFF),
-                    colorTexto: Color(0xFF3333FF),
-                    onPressed: null,
-                  ),
-                ],
-              ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const MainPage(),
+    );
+  }
+}
 
-              SizedBox(height: 40),
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  BotonCirculo(),
-                  SizedBox(width: 16),
-                  BotonCirculo(),
-                  SizedBox(width: 16),
-                  BotonCirculo(),
-                ],
-              ),
-            ],
-          ),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BotonPersonalizado(
+                  texto: "Login",
+                  colorFondo: const Color(0xFF3333FF),
+                  colorTexto: const Color(0xFFFFFFFF),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginPage()),
+                    );
+                  },
+                ),
+                const SizedBox(width: 16),
+                BotonPersonalizado(
+                  texto: "Sign Up",
+                  colorFondo: const Color(0xFFFFFFFF),
+                  colorTexto: const Color(0xFF3333FF),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignUpPage()),
+                    );
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                BotonCirculo(),
+                SizedBox(width: 16),
+                BotonCirculo(),
+                SizedBox(width: 16),
+                BotonCirculo(),
+              ],
+            ),
+          ],
         ),
       ),
     );
