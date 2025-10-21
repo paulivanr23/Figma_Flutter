@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
-import 'signup.dart';
+import 'login.dart'; // Pagina de Login
+import 'signup.dart';// Pagina de Sign Up
+import 'gps.dart'; // Pagina de GPS
 
 void main() {
   runApp(const MainApp());
@@ -31,6 +32,7 @@ class MainPage extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
+                // Boton Login
                 BotonPersonalizado(
                   texto: "Login",
                   colorFondo: const Color(0xFF3333FF),
@@ -43,6 +45,7 @@ class MainPage extends StatelessWidget {
                   },
                 ),
                 const SizedBox(width: 16),
+                // Boton Sign Up
                 BotonPersonalizado(
                   texto: "Sign Up",
                   colorFondo: const Color(0xFFFFFFFF),
@@ -56,10 +59,24 @@ class MainPage extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
+                // Boton Ver Ubicación
+                BotonPersonalizado(
+                  texto: "Ver Ubicación",
+                  colorFondo: const Color(0xFF3333FF),
+                  colorTexto: const Color(0xFFFFFFFF),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Gps()),
+                    );
+                  },
+                ),
+            const SizedBox(height: 20),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: const [
+                // Botones Circulares
                 BotonCirculo(),
                 SizedBox(width: 16),
                 BotonCirculo(),
@@ -99,7 +116,7 @@ class BotonPersonalizado extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           boxShadow: const [
             BoxShadow(
-              color: Color(0xFF000000),
+              color: Color.fromARGB(255, 0, 0, 0),
               offset: Offset(0, 4),
               blurRadius: 6,
             ),
